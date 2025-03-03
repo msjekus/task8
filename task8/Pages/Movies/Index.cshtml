@@ -1,0 +1,19 @@
+﻿@page
+@model task8.Pages.Movies.IndexModel
+@{
+}
+<h1>My favorite movies</h1>
+<div class="container">
+	@foreach (var movie in Model.Movies)
+	{
+		<div class="card w-100 mb-3">
+			<div class="card-body">
+				<h5 class="card-title">@movie.Title</h5>
+				<p class="card-text">Режисер: @movie.Filmmaker</p>
+				<p class="card-text">Жанр: @movie.Genre</p>
+				<p class="card-text">Короткий опис фільму: @movie.Description</p>
+				<a href="#" class="btn btn-outline-primary">Button</a>
+			</div>
+		</div>
+	}
+</div>

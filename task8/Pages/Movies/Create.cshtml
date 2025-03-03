@@ -1,0 +1,33 @@
+﻿@page
+@model task8.Pages.Movies.CreateModel
+@{
+}
+<div class="container">
+	@if (HttpContext.Request.Method == "POST" && Model.Movie is not null)
+	{
+		<h2>@(Model.Movie.Id). @Model.Movie.Title</h2>
+
+	}
+	<form method="post">
+		<div class="mb-3">
+			<label class="form-label" for="title">Назва фільму</label>
+			<input type="text" name="title" id="tit" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="filmmaker">Режисер</label>
+			<input type="text" name="filmmaker" id="filmm" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="genre">Жанр</label>
+			<input type="text" name="genre" id="genre" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="description">Опис фільму</label>
+			<input type="text" name="description" id="descrip" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<button type="submit" class="btn btn-outline-primary">Створити</button>
+		</div>
+	</form>
+
+</div>
