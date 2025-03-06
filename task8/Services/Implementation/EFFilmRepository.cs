@@ -1,43 +1,45 @@
-﻿using task8.Models;
+﻿using task8.Data;
+using task8.Models;
 using task8.Services.Abstract;
 
 namespace task8.Services.Implementation
 {
-    public class MockFilmRepository :IFilmRepository
+    public class EFFilmRepository : IFilmRepository
     {
-        private ICollection<Movie> _movies;
+        private readonly LibraryContext context;
 
-        public MockFilmRepository()
+        public EFFilmRepository(LibraryContext context)
         {
-            _movies = new List<Movie>();
+            this.context = context;
         }
         public Movie Create(Movie entity)
         {
-            int newId = 0;
-            if (_movies.Count > 0)
-                newId = _movies.Max(x => x.Id);
-            entity.Id = ++newId;
-            _movies.Add(entity);
+            context.Movies.Add(entity);
+            context.SaveChanges();
             return entity;
         }
 
         public Movie? Delete(int id)
         {
-            Movie? movie=_movies.FirstOrDefault(t => t.Id == id);
-            if (movie != null)
-                _movies.Remove(movie);
+            Movie? movie = context.Movies.Find(id);
+            if (movie is not null)
+            {
+                context.Movies.Remove(movie);
+                context.SaveChanges();
+            }
             return movie;
         }
 
         public Movie Edit(Movie entity)
         {
-            Movie? editedMovie = _movies.FirstOrDefault(t => t.Id == entity.Id);
-            if (editedMovie != null) 
+            Movie? editedMovie = context.Movies.Find(entity.Id);
+            if (editedMovie is not null)
             {
                 editedMovie.Title = entity.Title;
                 editedMovie.Filmmaker = entity.Filmmaker;
                 editedMovie.Genre = entity.Genre;
                 editedMovie.Description = entity.Description;
+                context.SaveChanges();
                 return editedMovie;
             }
             else
@@ -46,12 +48,13 @@ namespace task8.Services.Implementation
 
         public Movie? Get(int id)
         {
-            Movie? movie = _movies.FirstOrDefault(t => t.Id == id);
+            Movie? movie = context.Movies.Find(id);
             return movie;
         }
+
         public IEnumerable<Movie> GetAll()
         {
-            return _movies.ToList();
+            return context.Movies.ToList();
         }
     }
 }

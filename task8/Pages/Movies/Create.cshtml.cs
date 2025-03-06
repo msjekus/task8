@@ -16,16 +16,18 @@ namespace task8.Pages.Movies
             this.repository = repository;
         }
         [BindProperty]
-        public Movie? Movie { get; set; }
+        public Movie Movie { get; set; } = new ();
         public void OnGet()
         {
         }
-        public void OnPost(string title)
+        public IActionResult OnPost()
         {
             if (ModelState.IsValid && Movie is not null)
             {
                 repository.Create(Movie);
+                return RedirectToPage("Index");
             }
+            return Page();
         }
     }
 }

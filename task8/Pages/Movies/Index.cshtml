@@ -4,6 +4,9 @@
 }
 <h1>My favorite movies</h1>
 <div class="container">
+	<div>
+		<a href="/movies/create">Додати фільм</a>
+	</div>
 	@foreach (var movie in Model.Movies)
 	{
 		<div class="card w-100 mb-3">
@@ -12,7 +15,12 @@
 				<p class="card-text">Режисер: @movie.Filmmaker</p>
 				<p class="card-text">Жанр: @movie.Genre</p>
 				<p class="card-text">Короткий опис фільму: @movie.Description</p>
-				<a href="#" class="btn btn-outline-primary">Button</a>
+				<a href="/movies/edit/@movie.Id" class="btn btn-outline-primary">Редагувати</a>
+				<form method="post" style="display: inline">
+					<input type="hidden" name="id" value="@movie.Id"/>
+					<button type="submit" class="btn btn-outline-danger">Видалити</button>
+					<a href="/movies/delete/@movie.Id">Видалити з підтвердженням</a>
+				</form>
 			</div>
 		</div>
 	}

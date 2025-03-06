@@ -6,8 +6,7 @@ namespace task8.Data
     public class LibraryContext : DbContext
     {
         public LibraryContext(DbContextOptions<LibraryContext> options) :
-           base(options)
-        {
+           base(options){
             Database.EnsureCreated();
         }
         public DbSet<Movie> Movies { get; set; }
