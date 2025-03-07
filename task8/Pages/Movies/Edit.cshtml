@@ -3,26 +3,27 @@
 @{
 }
 <div class="container">
-<form method="post">
+	<form method="post" asp-antiforgery="true">
 	<input type="hidden" name="Id" value="@Model.Movie.Id"/>
 	<div class="mb-3">
-		<label class="form-label" for="title">Назва фільму</label>
-		<input type="text" name="title" id="tit" class="form-control" value="@Model.Movie.Title"/>
+			<label class="form-label" asp-for="Movie.Title"></label>
+			<input type="text" asp-for="Movie.Title" class="form-control"/>
 	</div>
 	<div class="mb-3">
-		<label class="form-label" for="filmmaker">Режисер</label>
-			<input type="text" name="filmmaker" id="filmm" class="form-control" value="@Model.Movie.Filmmaker" />
+			<label class="form-label" asp-for="Movie.Filmmaker"></label>
+			<input type="text" asp-for="Movie.Filmmaker" class="form-control" />
 	</div>
 	<div class="mb-3">
-		<label class="form-label" for="genre">Жанр</label>
-			<input type="text" name="genre" id="genre" class="form-control" value="@Model.Movie.Genre"/>
+			<label class="form-label" asp-for="Movie.Genre"></label>
+			<input type="text" asp-for="Movie.Genre" class="form-control" />
 	</div>
 	<div class="mb-3">
-		<label class="form-label" for="description">Опис фільму</label>
-			<input type="text" name="description" id="descrip" class="form-control" value="@Model.Movie.Description" />
+			<label class="form-label" asp-for="Movie.Description"></label>
+			<input type="text" asp-for="Movie.Description" class="form-control" />
 	</div>
 	<div class="mb-3">
 		<button type="submit" class="btn btn-outline-primary">Зберігти</button>
 	</div>
+		<a asp-page="Index" class="btn btn-outline-success">До списку фільмів</a>
 </form>
 </div>

@@ -4,9 +4,9 @@
 }
 <div class="container">
 	<h1>Ви дійсно хочете видалити фільм @(Model.Movie.Id). @Model.Movie.Title</h1>
-	<form metod="post" style="display: inline">
+	<form metod="post" asp-antiforgery="true" style="display: inline">
 		<input type="hidden" name="id" value="@Model.Movie.Id" />
 		<button type="submit" class="btn btn-outline-danger">Видалити</button>
 	</form>
-	<a href="/movies" class="btn btn-outline-success">До списку фільмів</a>
+	<a asp-page="Index" class="btn btn-outline-success">До списку фільмів</a>
 </div>

@@ -6,7 +6,7 @@ using task8.Services.Abstract;
 namespace task8.Pages.Movies
 {
 
-    [IgnoreAntiforgeryToken]
+    //[IgnoreAntiforgeryToken]
     public class CreateModel : PageModel
     {
         private readonly IFilmRepository repository;
